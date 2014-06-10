@@ -1,0 +1,45 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Cardgame</title>
+    <link rel="stylesheet" href="css/style.css">
+  </head>
+  <body>
+
+<div class="page" id="menu">
+  <div class="container al-c">
+    <h1>cardgame</h1>
+    <ul class="ul-clean">
+      <li class="m-05"><a class="w-100 button" id="nav-newgame">New Game</a></li>
+      <li class="m-05"><a class="w-100 button" id="nav-joingame">Join Game</a></li>
+      <li class="m-05"><a class="w-100 button" id="btn-logout">Log Out</a></li>
+    </ul>
+  </div>
+</div>
+
+<div class="page" id="game">
+  <div id="gamespace" class="fl-l w-80">
+    <div class="bottombar">
+      <a class="button" id="btn-plus">+</a>
+      <a class="button" id="btn-minus">-</a>
+      <a class="button" id="btn-drawcard">Draw A Card</a>
+      <a class="button" id="btn-quitgame">Quit Game</a>
+    </div>
+  </div>
+  <div id="chatlog" class="fl-r w-20">
+    <ul class="ul-clean" id="messages"></ul>
+    <form action="" class="bottombar">
+      <input id="m" autocomplete="off" />
+      <button class="button">Send</button>
+    </form>
+  </div>
+</div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="js/jquery-1.11.1.js"></script>
+    <script src="js/react.min.js"></script>
+    <script src="js/JSXTransformer.js"></script>
+    <script src="js/shards.js"></script>
+    <script src="js/client.js"></script>
+  </body>
+</html>

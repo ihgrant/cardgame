@@ -1,0 +1,10 @@
+{
+  "name": "cardgame",
+  "version": "0.0.1",
+  "description": "a card game engine using node and socket.io",
+  "dependencies": {
+    "express": "^4.4.1",
+    "q": "^1.0.1",
+    "socket.io": "^1.0.4"
+  }
+}

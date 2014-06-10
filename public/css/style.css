@@ -1,0 +1,93 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+body {
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-size: 100%;
+}
+.al-c {
+	text-align: center;
+}
+.m-1 {
+	margin: 1em;
+}
+.m-05 {
+	margin: .5em;
+}
+.fl-l {
+	float: left;
+}
+.fl-r {
+	float: right;
+}
+.w-20 {
+	width: 20%;
+}
+.w-80 {
+	width: 80% !important;
+}
+.w-100 {
+	width: 100%;
+}
+.ul-clean {
+	list-style-type: none;
+}
+.bottombar {
+	position: fixed;
+	bottom: 0;
+	width: 100%;
+	padding: 3px;
+}
+.button {
+	border-radius: .5em;
+	padding: .5em;
+	background: rgb(130, 224, 255);
+	border: none;
+	cursor: pointer;
+	display: inline-block;
+	box-shadow: 0 -1px rgb(190,255,255);
+}
+.button:hover {
+	background: rgb(150, 244, 255);
+	box-shadow: 0 -1px rgb(255,255,255);
+}
+.container {
+	max-width: 25em;
+	margin: 0 auto;
+}
+.card {
+	background-color: #fff;
+	width: 10em;
+	height: 14em;
+	border-radius: .5em;
+	padding: 1px;
+	float: left;
+	margin: .5em;
+}
+.cardinterior {
+	margin: 1em;
+	background-color: #ccc;
+}
+/* =========================================== */
+#chatlog {
+/*	box-shadow: 0 -5px 5px 5px rgba(0,0,0,.3);*/
+}
+#chatlog form {
+}
+#chatlog form input {
+	border: 0;
+	padding: 10px;
+	width: 90%;
+	margin-right: .5%;
+}
+#chatlog form button {
+	width: 9%;
+}
+#chatlog li {
+	padding: 5px 10px;
+}
+#chatlog li:nth-child(odd) {
+	background: #eee;
+}
