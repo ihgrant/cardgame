@@ -3,33 +3,10 @@ var app = express();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
 var fs = require('fs');
-var Q = require('q');
 var War = require('./modules/War');
-var Accounts = require('./modules/Accounts');
+var Accounts = require('./modules/accounts');
 
-function returnJSONFile(req, res, filePath) {
-  fs.readFile(filePath, 'utf8', function (err, data) {
-    if (err) {
-      res.status(404).send('Not found');
-    }
-    data = JSON.parse(data);
-    res.send(data);
-  });
-}
-
-var api = express()
-  // .get('/phones', function (req, res) {
-  //   returnJSONFile(req, res, './data/phones/phones.json');
-  // })
-  .get('/cards/:type', function (req, res) { // return deck, given a type
-    var type = req.params.type;
-    var path = './data/cards/' + type + '.json';
-    if (type === 'standard') {
-      res.send(generateStandardDeck());
-    } else {
-      returnJSONFile(req, res, path);
-    }
-  });
+var api = require('./api');
 
 var chat = io.of('/chat');
 var game = io.of('/game');
@@ -54,8 +31,8 @@ game.on('connection', function (socket) {
   });
 
   socket.on('drawcard', function (user) { // log drawing of a card and send card id to user
-    var cardid = War.drawCard(user);
-    game.emit('carddrawn', user, cardid);
+    var cardId = War.drawCard(user);
+    game.emit('carddrawn', user, cardId);
   });
 
   socket.on('compare', function (user, card1, card2) {
@@ -70,47 +47,3 @@ app
 http.listen(3000, function () {
   console.log('listening on *:3000');
 });
-
-function generateStandardDeck() {
-  var deck = [],
-  suites = ['diamonds', 'clubs', 'hearts', 'spades'],
-  Card = function (s, n) {
-    this.suite = s;
-    this.name = n.toString();
-    return this;
-  };
-
-  suites.forEach(function (suite) {
-    for (var y = 0; y < 13; y++) {
-      switch (y) {
-        case (0):
-          deck.push(new Card(suite, 'ace'));
-          break;
-        case (11):
-          deck.push(new Card(suite, 'jack'));
-          break;
-        case (12):
-          deck.push(new Card(suite, 'queen'));
-          break;
-        case (13):
-          deck.push(new Card(suite, 'king'));
-          break;
-        default:
-          deck.push(new Card(suite, y));
-          break;
-      }
-    }
-  });
-
-  return deck;
-}
-
-function random(n) {
-  var x = Math.floor(Math.random() * n);
-  return x;
-}
-
-function sessionID(a,b) {
-  for(b=a=''; a++<36; b+=a*51&52 ? (a^15 ? 8^Math.random()*(a^20?16:4):4).toString(16):'-');
-  return b;
-}
