@@ -1,4 +1,5 @@
 var fs = require('fs');
+var crypto = require('./crypto');
 
 var path = '/data/users.json';
 
@@ -34,11 +35,18 @@ var Accounts = {
 			if (err) {
 				callback(err);
 			} else {
-				if (data[user] && data[user].password === password) {
-					callback(null, true); // valid password
-				} else {
-					callback(null, false); // invalid password
-				}
+				crypto.hashPassword(password, function (err, hashedPassword) {
+					if (err) {
+						callback(err);
+					} else {
+						if (data[user] && data[user].password === hashedPassword) {
+							callback(null, true); // valid password
+						} else {
+							callback(null, false); // invalid password
+						}
+
+					}
+				});
 			}
 		});
 	},
@@ -47,12 +55,18 @@ var Accounts = {
 			if (err) {
 				callback(err);
 			} else {
-				data[user] = {password: password};
-				fs.writeFile(path, JSON.stringify(data), function (err) {
+				crypto.hashPassword(password, function (err, hashedPassword) {
 					if (err) {
 						callback(err);
 					} else {
-						callback(null);
+						data[user] = {password: hashedPassword};
+						fs.writeFile(path, JSON.stringify(data), function (err) {
+							if (err) {
+								callback(err);
+							} else {
+								callback(null);
+							}
+						});
 					}
 				});
 			}
