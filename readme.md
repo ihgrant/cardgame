@@ -1,6 +1,13 @@
 # cardgame engine
-
 a browser-based engine for running multiplayer card games.
+
+## TO INSTALL
+install node
+open terminal
+navigate to directory
+`npm install`
+`node server`
+navigate to localhost:3000 in your browser.
 
 ## GOALS
 - no account required

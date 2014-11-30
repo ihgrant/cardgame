@@ -3,6 +3,7 @@ var app = express();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
 var fs = require('fs');
+var Q = require('q');
 var War = require('./modules/War');
 var Accounts = require('./modules/Accounts');
 

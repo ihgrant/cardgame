@@ -1,6 +1,7 @@
 var fs = require('fs');
 
 var War = {
+	filepath: 'war.json',
 	ranks: {
 		'ace': 0,
 		'2': 1,
@@ -17,7 +18,7 @@ var War = {
 		'king': 12
 	},
 	logSession: function (user) {
-		fs.readFileSync('data/war.json', 'utf8', function (err, data) {
+		fs.readFileSync('data/'+filepath, 'utf8', function (err, data) {
 			if (err) {
 				res.status(404).send('Not found');
 			}
@@ -27,14 +28,14 @@ var War = {
 				player1: user,
 				player2: 'cpu'
 			};
-			fs.writeFile('data/war.json', JSON.stringify(data), function (err) {
+			fs.writeFile('data/'+filepath, JSON.stringify(data), function (err) {
 				if (err) throw err;
 			});
 			return sessionId;
 		});
 	},
 	drawCard: function (user) {
-		fs.readFile(filePath, 'utf8', function (err, data) {
+		fs.readFile('data/'+filepath, 'utf8', function (err, data) {
 			if (err) {
 				res.status(404).send('Not found');
 			}
